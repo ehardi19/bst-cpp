@@ -1,4 +1,12 @@
 #include "BST.h"
+#include<string>
+
+void printFindNode(address res) {
+     if (res != NULL)
+        cout << info(res) << endl;
+    else
+        cout << "Not Found" << endl;
+}
 
 int main() {
     address root = NULL;
@@ -93,7 +101,29 @@ int main() {
     cout << "Root          : " << info(root) << endl;
     cout << "Leaves        : "; printLeaves(root); cout << endl;
     cout << "Internal Nodes: "; printInternalNodes(root); cout << endl;
-    cout << "Height        : " << height(root) << endl;
+    cout << "Height        : " << height(root) << endl << endl;
+
+    cout << "3. SEARCH" << endl << endl;
+    
+    cout << "Search     : 20" << endl;
+    cout << "Result     : "; printFindNode(findNode(root, 20)); cout << endl;
+
+    cout << "Search     : 30" << endl;
+    cout << "Result     : "; printFindNode(findNode(root, 30)); cout << endl << endl;
+
+    cout << "4. DELETE" << endl << endl;
+
+    cout << "Delete     : 20" << endl;
+    root = deleteNode(root, 20);
+    cout << "Result     : "; inOrder(root); cout << endl << endl;
+
+    cout << "Delete     : 99" << endl;
+    root = deleteNode(root, 99);
+    cout << "Result     : "; inOrder(root); cout << endl << endl;
+
+    cout << "Delete     : 3" << endl;
+    root = deleteNode(root, 3);
+    cout << "Result     : "; inOrder(root); cout << endl << endl;
 
     return 0;
 }

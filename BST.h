@@ -29,3 +29,6 @@ int countInternalNodes(address root);
 
 void printLeaves(address root);
 void printInternalNodes(address root);
+
+address findNode(address root, int info);
+address deleteNode(address root, int info);

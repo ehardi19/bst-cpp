@@ -140,3 +140,49 @@ void printInternalNodes(address root) {
             cout << info(current) << ' ';
     }
 }
+
+address findNode(address root, int info) {
+    if (root == NULL || info(root) == info)
+        return root;
+    
+    if (info(root) < info)
+        return findNode(right(root), info);
+    
+    return findNode(left(root), info);
+}
+
+address minValueNode(address node) {
+    address current = node;
+
+    while (left(current) != NULL)
+        current = left(current);
+
+    return current;
+}
+
+address deleteNode(address root, int info) {
+    if (root == NULL)
+        return root;
+
+    if (info < info(root))
+        left(root) = deleteNode(left(root), info);
+    else if (info > info(root))
+        right(root) = deleteNode(right(root), info);
+    else {
+        if (left(root) == NULL) {
+            address temp = right(root);
+            free(root);
+            return temp;
+        } else if (right(root) == NULL) {
+            address temp = left(root);
+            free(root);
+            return temp;
+        }
+
+        address temp = minValueNode(right(root));
+        info(root) = info(temp);
+        right(root) = deleteNode(right(root), info(temp));
+    }
+
+    return root;
+}
